@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   piece.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/26 12:51:57 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/26 12:52:00 by xwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 int		count_pieces(t_list *tetriminos)
@@ -43,6 +55,6 @@ void	modify_piece(t_piece *piece, char *str, int row, int pos)
 		piece->top = row;
 	if (pos % 5 < piece->left)
 		piece->left = pos % 5;
-	piece->connection += calculate_connection(str, pos);
+	piece->connection += count_connections(str, pos);
 	piece->num += 1;
 }

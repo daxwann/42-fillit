@@ -1,25 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/26 12:51:47 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/26 13:14:52 by xwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-t_list	*ft_lstnew(void const *tet_piece)
+t_list	*ft_lstnew(void *tet_piece)
 {
 	t_list	*link;
 
 	if (!(link = (t_list*)malloc(sizeof(*link))))
 		return (NULL);
-	if (!content)
+	if (!tet_piece)
 	{
 		link->content = NULL;
 		link->content_size = 0;
 	}
 	else
-		list->content = tet_piece;
+		link->content = tet_piece;
 	link->next = NULL;
 	return (link);
 }
 
-t_list	*ft_lstpush(t_list **alst, t_list *last, t_list *new_ele)
+t_list	*ft_lstpush(t_list **head, t_list *last, t_list *new_ele)
 {
-
+	if (!head || !new_ele)
+		return (NULL);
+	if (!last)
+	{
+		(*head)->next = new_ele;
+		last = (*head)->next;
+	}
+	else
+	{
+		last->next = new_ele;
+		last = last->next;
+	}
+	return (last);
 }
 
 t_list	*create_list(int fd, char *buf)
@@ -38,7 +62,7 @@ t_list	*create_list(int fd, char *buf)
 	{
 		if (read(fd, buf, 20) != 20)
 			return (NULL);
-		if (!(piece = create_tet(buf, count)))
+		if (!(piece = check_tet(buf, count)))
 			return (NULL);
 		if (!head)
 			head = ft_lstnew(piece);

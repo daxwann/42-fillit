@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tetrimino.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/26 12:36:32 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/26 13:38:40 by xwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 t_tet	*new_tet(char *str, int top, int left, int count)
@@ -64,28 +76,28 @@ void	delete_tet(t_board *bd, int row, int col, t_tet *tet)
 
 t_tet	*check_tet(char *str, int count)
 {
-	int		i;
-	int		j;
+	int		pos;
+	int		row;
 	t_piece	piece;
 
 	initialize_piece(&piece);
-	i = 0;
-	j = 0;
-	while (i < 20)
+	pos = 0;
+	row = 0;
+	while (pos < 20)
 	{
-		if (i % 5 == 4)
+		if (pos % 5 == 4)
 		{
-			if (str[i] != '\n')
+			if (str[pos] != '\n')
 				return (NULL);
-			j++;
+			row++;
 		}
-		else if (!(str[i] == '#' || str[i] == '.'))
+		else if (!(str[pos] == '#' || str[pos] == '.'))
 			return (NULL);
-		else if (str[i] == '#')
-			modify_piece(&piece, str, i, j);
-		i++;
+		else if (str[pos] == '#')
+			modify_piece(&piece, str, row, pos);
+		pos++;
 	}
 	if (piece.num == 4 && (piece.connection == 6 || piece.connection == 8))
-			return (new_tet(str, p.top, p.left, count));
+		return (new_tet(str, piece.top, piece.left, count));
 	return (NULL);
 }

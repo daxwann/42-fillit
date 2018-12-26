@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   backtrack.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/26 12:50:30 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/26 13:04:34 by xwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 int	fits_on_board(t_board *bd, t_tet *tet, int row, int col)
@@ -11,7 +23,7 @@ int	fits_on_board(t_board *bd, t_tet *tet, int row, int col)
 		j = 0;
 		while (j < (4 - tet->col))
 		{
-			if (tet->shape[tet->row + i][tet->col + j] == "#")
+			if (tet->shape[tet->row + i][tet->col + j] == '#')
 			{
 				if (col + j >= bd->size || row + i >= bd->size || \
 						(bd->board)[row + i][col + j])

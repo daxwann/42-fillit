@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/types.h>
+# include <fcntl.h>
 
 typedef struct		s_board
 {
@@ -34,16 +35,32 @@ typedef struct		s_piece
 	int				top;
 }					t_piece;
 
-// output
+/* output */
 void				ft_putchar(char c);
 size_t				ft_strlen(const char *str);
 void				ft_putstr(const char *str);
 int					display_usage_error(int error_code);
-// list
-t_list				*ft_lstnew(void const *tet_piece);
-void				ft_lstadd(t_list **alst, t_list *new_ele);
+/* list */
+t_list				*ft_lstnew(void *tet_piece);
+t_list				*ft_lstpush(t_list **head, t_list *last, t_list *new_ele);
 t_list				*create_list(int fd, char *buf);
-
-
+/* board */
+int					get_board_size(int pieces);
+void				initialize_board(char board[104][104]);
+void				print_board(char board[104][104], int size);
+/* piece */
+int					count_pieces(t_list *tetriminos);
+void				initialize_piece(t_piece *piece);
+int					count_connections(char *str, int position);
+void				modify_piece(t_piece *piece, char *str, int row, int pos);
+/* tetrimino */
+t_tet				*new_tet(char *str, int top, int left, int count);
+void				add_tet(t_board *bd, int row, int col, t_tet *tet);
+void				delete_tet(t_board *bd, int row, int col, t_tet *tet);
+t_tet				*check_tet(char *str, int count);
+/* backtracking */
+int					fits_on_board(t_board *bd, t_tet *tet, int row, int col);
+int					next_tet(t_board *bd, t_list *tetriminos);
+int					solve(t_board *bd, t_list *tetriminos);
 
 #endif

@@ -1,10 +1,21 @@
-#include "fillit.h"
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   board.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/26 12:38:19 by xwang             #+#    #+#             */
+/*   Updated: 2018/12/26 12:38:22 by xwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	get_board_size(int pieces)
+#include "fillit.h"
+
+int		get_board_size(int pieces)
 {
 	int b_size;
-	
+
 	b_size = 2;
 	while ((b_size * b_size) < (pieces * 4))
 		b_size++;
