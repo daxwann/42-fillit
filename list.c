@@ -6,7 +6,7 @@
 /*   By: xwang <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 12:51:47 by xwang             #+#    #+#             */
-/*   Updated: 2018/12/26 13:14:52 by xwang            ###   ########.fr       */
+/*   Updated: 2018/12/26 20:04:55 by xwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_list	*create_list(int fd, char *buf)
 	last = NULL;
 	while (!no_newline)
 	{
-		if (read(fd, buf, 20) != 20)
+		if (read(fd, buf, 20) != 20 || count > 26)
 			return (NULL);
 		if (!(piece = check_tet(buf, count)))
 			return (NULL);
